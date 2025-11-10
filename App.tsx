@@ -9,7 +9,7 @@ import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 axios.defaults.baseURL = 'https://api.thecatapi.com/v1/';
-axios.defaults.headers.common['x-api-key'] = 'live_luDvCvU2SLZYZhgiMxST9LYrhsmRGMnOZ9Fpdo2gSSxEnh0mZvYbPAXe0mQB5lB0';
+axios.defaults.headers.common['x-api-key'] = '';
 
 import ButtonBack from './src/screens/components/ButtonBack';
 import { LoadBreeds } from './src/screens/Breeds';
