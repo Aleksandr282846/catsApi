@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { View, Image, StyleSheet, Text } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { View, Image, StyleSheet, Text, TouchableOpacity, ScrollView } from "react-native";
 
 type Breed = {
   id: string;
   name: string;
   description: string;
+  image?: { url: string };
 }
 
 export const LoadBreeds = () => {
@@ -18,21 +18,24 @@ export const LoadBreeds = () => {
     axios
       .get(url)
       .then((response) => {
-        if (response?.data) {
-          setBreeds(response?.data)
-        }
+        setBreeds(response?.data)
       })
       .catch((error) => console.log(error));
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
-      {breeds?.map(breed => (
-        <Text>{breed.name}</Text>
-      ))}
-      <Image style={styles.image} source={{ uri: ''}}/>
+    <ScrollView>
+      {breeds?.map(breed => {
+        console.log(breed.image)
+        return (
+          <View key={breed.id}>
+            <Image style={styles.image} source={{ uri: breed?.image?.url }} />
+            <Text>{breed.name}</Text>
+          </View>
+        )
+      })}
     </ScrollView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({

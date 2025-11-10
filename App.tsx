@@ -9,10 +9,11 @@ import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 axios.defaults.baseURL = 'https://api.thecatapi.com/v1/';
-axios.defaults.headers.common['x-api-key'] = '';
+axios.defaults.headers.common['x-api-key'] = 'live_luDvCvU2SLZYZhgiMxST9LYrhsmRGMnOZ9Fpdo2gSSxEnh0mZvYbPAXe0mQB5lB0';
 
 import ButtonBack from './src/screens/components/ButtonBack';
 import { LoadBreeds } from './src/screens/Breeds';
+// import { BreedDetail } from './src/screens/BreedDetail';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,19 +34,20 @@ type ImageData = {
 
 
 
-function MyBottomTabs () {
+function MyTabs () {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="BreedsNavigator" component={LoadBreeds} />
+      <Tab.Screen name="BreedsNavigator" component={BreedsStack} />
       {/* <Tab.Screen name="Favourites" component={Favourites} /> */}
     </Tab.Navigator>
   );
 }
 
-function BreedsNavigator() {
+function BreedsStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Breeds" component={LoadBreeds} />
+      <Stack.Screen name="BreedsList" component={LoadBreeds} options={{ title: 'Breeds' }} />
+      {/* <Stack.Screen name="BreedDetail" component={BreedDetail} options={{ title: 'Breed Detail' }} /> */}
     </Stack.Navigator>
   )
 }
@@ -94,7 +96,7 @@ export default function App() {
     <NavigationContainer>
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          
+          <MyTabs />
           <View style={styles.container}>
             <TouchableOpacity>
               <ButtonBack />
